@@ -37,7 +37,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.viewDidLoad()
         self.edgesForExtendedLayout = [.bottom]
         
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2

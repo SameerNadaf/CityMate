@@ -9,7 +9,7 @@ import UIKit
 
 class BeautyViewController: UIViewController {
     
-    @IBOutlet var searchBarView: UIView!
+    @IBOutlet weak var searchBarView: UIView!
     @IBOutlet weak var carouselCollectionView: UICollectionView!
     @IBOutlet weak var groomingServicesCollectionView: UICollectionView!
     @IBOutlet weak var mostBookedServicesCollectionView: UICollectionView!
@@ -279,7 +279,11 @@ extension BeautyViewController: UICollectionViewDelegateFlowLayout, UICollection
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == carouselCollectionView {
-            return CGSize(width: UIScreen.main.bounds.width, height: 200)
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                return CGSize(width: UIScreen.main.bounds.width, height: 200)
+            } else {
+                return CGSize(width: 440, height: 200)
+            }
             
         } else if collectionView == groomingServicesCollectionView {
             let itemsPerRow: CGFloat = 3
