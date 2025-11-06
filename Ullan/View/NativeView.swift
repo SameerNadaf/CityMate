@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NativeView: UIViewController {
+class NativeViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mainPosterImage: UIImageView!
@@ -35,19 +35,19 @@ class NativeView: UIViewController {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
             layout.minimumLineSpacing = 16
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         }
         
         if let layout2 = secondaryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout2.scrollDirection = .horizontal
             layout2.minimumLineSpacing = 16
-            layout2.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+            layout2.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         }
         
     }
 }
 
-extension NativeView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension NativeViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
@@ -73,10 +73,5 @@ extension NativeView: UICollectionViewDataSource, UICollectionViewDelegateFlowLa
         cell.layer.masksToBounds = true
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 250, height: collectionView.frame.height)
-    }
+
 }
