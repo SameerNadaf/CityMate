@@ -146,7 +146,9 @@ extension RegisterView {
             }
             
             print("User Registration Successful!")
-            goToLoginPage()
+            await MainActor.run {
+                goToLoginPage()
+            }
             
         } catch {
             print("Error Registering User: \(error.localizedDescription)")

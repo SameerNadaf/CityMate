@@ -130,7 +130,9 @@ extension LoginViewController {
             }
             
             print("Login Successful!")
-            navigateToMainTabBar()
+            await MainActor.run {
+                navigateToMainTabBar()
+            }
             
         } catch {
             print("Error logging in: \(error.localizedDescription)")
