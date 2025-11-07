@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7UU-PL-5ef">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s6F-oG-PSk">
     <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -157,6 +157,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="b5u-jt-rNt" eventType="touchUpInside" id="3xu-gF-YLf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbH-7i-xUH">
                                 <rect key="frame" x="30" y="574" width="342" height="50"/>
@@ -313,7 +316,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
-                                    <action selector="registerBtn:" destination="iLZ-R9-HrC" eventType="touchUpInside" id="Ld6-d9-hpJ"/>
+                                    <action selector="registerButtonPressed:" destination="iLZ-R9-HrC" eventType="touchUpInside" id="OSk-D5-rgr"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -350,7 +353,7 @@
                         <outlet property="emailFieldView" destination="fHE-v6-541" id="9Us-8a-gUR"/>
                         <outlet property="passField" destination="oCM-p1-m0p" id="3sR-oe-AeY"/>
                         <outlet property="passFieldView" destination="nYi-QW-eOv" id="fmc-qZ-Je7"/>
-                        <outlet property="registerBtn" destination="2lh-Wg-pnH" id="Gr0-GR-dMU"/>
+                        <outlet property="registerBtn" destination="2lh-Wg-pnH" id="MK8-uT-OjK"/>
                         <outlet property="registerTitleLabel" destination="lrZ-d3-vb8" id="ycf-4J-9FK"/>
                         <outlet property="subTitleLabel" destination="2dO-zM-WFk" id="7Oc-jm-Lzp"/>
                     </connections>
@@ -1342,7 +1345,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="rhk-i1-7vd">
             <objects>
-                <tabBarController id="7UU-PL-5ef" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainTabBarController" id="7UU-PL-5ef" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jil-fd-RKd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1363,7 +1366,7 @@
         <!--Profile-->
         <scene sceneID="ku6-6a-EcU">
             <objects>
-                <viewController id="aCc-fv-ywv" customClass="ProfileViewController" customModule="Ullan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profileViewController" id="aCc-fv-ywv" customClass="ProfileViewController" customModule="Ullan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sYu-Xv-g7a">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1908,6 +1911,9 @@
                                                                 </constraints>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                                                <connections>
+                                                                    <action selector="signOutButtonPressed:" destination="aCc-fv-ywv" eventType="touchUpInside" id="Oeh-G5-2EI"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version 1.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glC-wF-dye">
                                                                 <rect key="frame" x="20" y="75" width="362" height="19.333333333333329"/>

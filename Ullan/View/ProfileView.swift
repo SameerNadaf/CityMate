@@ -58,4 +58,28 @@ class ProfileViewController: UIViewController {
         supportView.clipsToBounds = true
     }
     
+    @IBAction func signOutButtonPressed(_ sender: UIButton) {
+        signOut()
+    }
+    
+}
+
+extension ProfileViewController {
+    
+    private func signOut() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else {
+            print("Could not find LoginViewController in storyboard")
+            return
+        }
+        
+        loginVC.modalPresentationStyle = .fullScreen
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            window.rootViewController = loginVC
+            window.makeKeyAndVisible()
+        }
+    }
 }
