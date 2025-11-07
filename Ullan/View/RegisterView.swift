@@ -52,7 +52,111 @@ class RegisterView: UIViewController {
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    @IBAction func registerBtn(_ sender: Any) {
+    
+    @IBAction func registerButtonPressed(_ sender: UIButton) {
+        guard let email = emailField.text,
+              let password = passField.text,
+              let confirmPass = conPassField.text else { return }
+        
+        let verify = validateUserFields(userName: "Sameer N", email: email, password: password, confirmPass: confirmPass)
+        
+        if verify {
+            if let error = passwordValidationError(password) {
+                print(error)
+            } else {
+                Task {
+                    await register(userName: "Sameer N", email: email, password: password, phone: "9876543210")
+                }
+            }
+        }
+    }
+    
+}
+
+/*
+ Request body
+ 
+ {
+   "name": "John Doe",
+   "email": "john@example.com",
+   "password": "123456",
+   "phone": "9876543210"
+ }
+ */
+
+/*
+ Response
+ 
+ { "message": "Signup successful" }
+ */
+
+extension RegisterView {
+    
+    private func validateUserFields(userName: String, email: String, password: String, confirmPass: String) -> Bool {
+        return !userName.isEmpty && !email.isEmpty && !password.isEmpty && !confirmPass.isEmpty && password == confirmPass
+    }
+    
+    private func passwordValidationError(_ password: String) -> String? {
+        if password.count < 8 {
+            return "Password must be at least 8 characters long."
+        }
+        if password.range(of: "[A-Z]", options: .regularExpression) == nil {
+            return "Add at least one uppercase letter."
+        }
+        if password.range(of: "[a-z]", options: .regularExpression) == nil {
+            return "Add at least one lowercase letter."
+        }
+        if password.range(of: "[0-9]", options: .regularExpression) == nil {
+            return "Add at least one number."
+        }
+        if password.range(of: "[!@#$%^&*(),.?\":{}|<>]", options: .regularExpression) == nil {
+            return "Add at least one special character."
+        }
+        return nil
+    }
+
+    private func register(userName: String, email: String, password: String, phone: String?) async {
+        guard let url = URL(string: "https://api.optionallabs.com/api/signup") else {
+            print("Invalid URL")
+            return
+        }
+        
+        let body: [String : Any] = [
+              "name": userName,
+              "email": email,
+              "password": password,
+              "phone": phone ?? ""
+        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body)
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            let ( _, response) = try await URLSession.shared.data(for: request)
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
+                print("Invalid response from server")
+                print("Response: \(response)")
+                return
+            }
+            
+            print("User Registration Successful!")
+            await MainActor.run {
+                goToLoginPage()
+            }
+            
+        } catch {
+            print("Error Registering User: \(error.localizedDescription)")
+        }
+    }
+    
+    private func goToLoginPage() {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
