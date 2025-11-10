@@ -118,6 +118,8 @@ class BeautyViewController: UIViewController {
         massageForMenAdBanner.layer.cornerRadius = 10
         massageForMenAdBanner.clipsToBounds = true
         
+        carouselCollectionView.register(UINib(nibName: "ImageCarouselCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "carouselCell")
+        
         if let layout = carouselCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
             layout.minimumLineSpacing = 20
@@ -218,7 +220,7 @@ extension BeautyViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == carouselCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCarouselCell", for: indexPath) as! ImageCarouselCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "carouselCell", for: indexPath) as! ImageCarouselCollectionViewCell
             let imageName = carouselImages[indexPath.row]
             cell.imageView.image = UIImage(named: imageName)
             return cell

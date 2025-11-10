@@ -1,15 +1,16 @@
 //
-//  ImageCarouselCell.swift
+//  ImageCarouselCollectionViewCell.swift
 //  Ullan
 //
-//  Created by Asha on 05/11/25.
+//  Created by Asha on 09/11/25.
 //
 
 import UIKit
 
-class ImageCarouselCell: UICollectionViewCell {
-    @IBOutlet weak var imageView: UIImageView!
+class ImageCarouselCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var imageView: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         imageView.layer.cornerRadius = 10
@@ -19,6 +20,6 @@ class ImageCarouselCell: UICollectionViewCell {
         } else {
             imageView.widthAnchor.constraint(equalToConstant: 400).isActive = true
         }
-        
     }
+
 }
